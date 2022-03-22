@@ -31,14 +31,10 @@ public class WeatherServlet extends HttpServlet {
 		String cityname=request.getParameter("cityname");
 		// The servlet is taking the responsibility of creating the RESPONSE / VIEW
 		// Which is not acceptable, which is against MVC rule
-		// The role of the servlet is not executing any BUSINESS logic
 		// The role of the servlet (controller layer) is just route to different components
-		if (cityname.equals("Bangalore"))
-			pw.println("The weather is 25"); // response  for Bangalore
-		else if (cityname.equals("Mumbai"))
-			pw.println("The weather is 30"); // response for Mumbai
-		else 
-			pw.println("I don't have the value for the entered city - INVALID CITY NAME");
+		String msg=WeatherInfoProvider.findTemperature(cityname);
+		pw.println(msg); // view creation
+		
 			
 	}
 
